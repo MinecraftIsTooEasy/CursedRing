@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 public class CursedRing implements ModInitializer {
     public static final String MOD_NAME = "CursedRing";
     public static final int ButtonID = MOD_NAME.hashCode();
-    public static final ResourceLocation EnderChest = new ResourceLocation("textures/gui/ender_chest_button.png");
+    public static final ResourceLocation EnderChest = new ResourceLocation("cursedring", "textures/gui/ender_chest_button.png");
     public static final Map<Integer, Supplier<String>> InfoMap = new HashMap<>() {{
         this.put(6, () -> castDoubleToPercent(CursedRingConfig.ArmorWeakened.getDoubleValue()));
         this.put(7, () -> castDoubleToPercent(CursedRingConfig.DamageToMobWeakened.getDoubleValue()));

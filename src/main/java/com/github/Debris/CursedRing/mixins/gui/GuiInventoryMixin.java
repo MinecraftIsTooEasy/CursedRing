@@ -32,10 +32,10 @@ public abstract class GuiInventoryMixin extends InventoryEffectRenderer {
         this.buttonList.add(new GuiEnderChestButton(realX, realY));
     }
 
-//    @Inject(method = "actionPerformed", at = @At("RETURN"))
-//    private void addAction(GuiButton par1GuiButton, CallbackInfo ci) {
-//        if (par1GuiButton.id == CursedRing.ButtonID) {
-//            Network.sendToServer(new C2SOpenEnderChest());
-//        }
-//    }
+    @Inject(method = "actionPerformed", at = @At("RETURN"))
+    private void addAction(GuiButton par1GuiButton, CallbackInfo ci) {
+        if (par1GuiButton.id == CursedRing.ButtonID) {
+            Network.sendToServer(new C2SOpenEnderChest());
+        }
+    }
 }

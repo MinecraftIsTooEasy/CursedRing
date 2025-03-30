@@ -20,14 +20,6 @@ public class GuiEnderChestButton extends GuiButton {
     }
 
     @Override
-    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
-        if (this.drawButton && enabled) {
-            Network.sendToServer(new C2SOpenEnderChest());
-        }
-        return super.mousePressed(mc, mouseX, mouseY);
-    }
-
-    @Override
     public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
         this.drawButton = PlayerUtil.isCursedRingWorn(par1Minecraft.thePlayer) && CursedRingConfig.EnderChest.getBooleanValue();
         if (this.drawButton && this.enabled) {
