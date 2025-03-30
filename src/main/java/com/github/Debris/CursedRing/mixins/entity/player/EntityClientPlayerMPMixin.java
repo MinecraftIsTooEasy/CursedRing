@@ -1,5 +1,6 @@
 package com.github.Debris.CursedRing.mixins.entity.player;
 
+import com.github.Debris.CursedRing.config.CursedRingConfig;
 import com.github.Debris.CursedRing.util.PlayerUtil;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.*;
@@ -14,7 +15,7 @@ public abstract class EntityClientPlayerMPMixin extends ClientPlayer {
 
     @ModifyReturnValue(method = "isSleeping", at = @At("RETURN"))
     private boolean canNotSleep(boolean original) {
-        if (PlayerUtil.isCursedRingWorn(this)) return false;
+        if (PlayerUtil.isCursedRingWorn(this) && CursedRingConfig.EternalInsomnia.getBooleanValue()) return false;
         return original;
     }
 }

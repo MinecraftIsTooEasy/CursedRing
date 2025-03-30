@@ -1,7 +1,7 @@
 package com.github.Debris.CursedRing.compat;
 
 import com.github.Debris.CursedRing.CursedRing;
-import com.github.Debris.CursedRing.register.Items;
+import com.github.Debris.CursedRing.register.CursedRingRegistryInit;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiInfoRecipe;
@@ -20,6 +20,6 @@ public class EmiPluginImpl implements EmiPlugin {
             }
             return (Text) Text.translatable("tooltip.enigmaticlegacy.cursedRing" + x);
         }).toList();
-        emiRegistry.addRecipe(new EmiInfoRecipe(List.of(EmiStack.of(Items.cursedRing)), cursedRingTexts, null));
+        emiRegistry.addRecipe(new EmiInfoRecipe(List.of(EmiStack.of(CursedRingRegistryInit.cursedRing)), cursedRingTexts, null));
     }
 }

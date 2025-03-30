@@ -37,7 +37,7 @@ public abstract class ServerPlayerMixin extends EntityPlayer implements IServerP
             this.closeScreen();
         }
         this.incrementWindowID();
-        Network.sendToClient(this.getAsEntityPlayerMP(), new S2COpenWindow(this.currentWindowId, inventory.getCustomNameOrUnlocalized(),inventory.getSizeInventory() ,inventory.hasCustomName()));
+        Network.sendToClient(this.getAsEntityPlayerMP(), new S2COpenWindow(this.currentWindowId, inventory.getCustomNameOrUnlocalized(), inventory.getSizeInventory(), inventory.hasCustomName()));
         this.openContainer = new ContainerChest(this, inventory);
         this.openContainer.windowId = this.currentWindowId;
         this.openContainer.addCraftingToCrafters(this);

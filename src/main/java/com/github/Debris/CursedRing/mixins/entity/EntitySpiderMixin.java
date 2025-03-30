@@ -14,9 +14,6 @@ public abstract class EntitySpiderMixin extends EntityMob {
 
     @WrapWithCondition(method = "checkSwitchingToPeaceful", at = @At(value = "INVOKE", target = "Lnet/minecraft/EntityArachnid;setEntityToAttack(Lnet/minecraft/Entity;)V"))
     private boolean doNotStop(EntityArachnid instance, Entity entity) {
-        if (this.getEntityToAttack() instanceof EntityPlayer player && PlayerUtil.shouldBeAngryAt(player)) {
-            return false;
-        }
-        return true;
+        return !(this.getEntityToAttack() instanceof EntityPlayer player) || !PlayerUtil.shouldBeAngryAt(player);
     }
 }

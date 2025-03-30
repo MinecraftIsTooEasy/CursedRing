@@ -14,7 +14,7 @@
     "entity.player.EntityClientPlayerMPMixin",
     "entity.player.EntityPlayerMixin",
     "entity.player.ServerPlayerMixin",
-    "gui.GuiInventoryMixin",
+    "gui.GuiInventoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

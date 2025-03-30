@@ -23,18 +23,13 @@ public class EventListener extends Handlers {
             @Override
             public void onPlayerLoggedIn(PlayerLoggedInEvent event) {
                 ServerPlayer player = event.player();
-                if (!PlayerUtil.isCursedRingWorn(player) && !player.inCreativeMode()) {
-                    ((IEntityPlayer) (EntityPlayer) player).cursedRing$TryAddCursedRing();
+                if (!PlayerUtil.isCursedRingWorn(player) && !player.inCreativeMode() && event.firstLogin()) {
+                    ((IEntityPlayer) (EntityPlayer) player).cr$TryAddCursedRing();
                 }
             }
         });
         Enchanting.register(new EnchantingListener());
 
         Combat.register(new CombatListener());
-    }
-
-    @Subscribe
-    public void onItemRegister(ItemRegistryEvent event) {
-        Items.registerItems(event);
     }
 }

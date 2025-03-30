@@ -10,7 +10,7 @@ public class PlayerUtil {
     }
 
     public static boolean isCursedRingWorn(EntityPlayer player) {
-        return ((IEntityPlayer) (EntityPlayer) player).cursedRing$IsCursedRingWorn();
+        return ((IEntityPlayer) (EntityPlayer) player).cr$IsCursedRingWorn();
     }
 
 }

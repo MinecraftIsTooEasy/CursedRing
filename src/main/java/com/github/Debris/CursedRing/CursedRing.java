@@ -6,14 +6,15 @@ import com.github.Debris.CursedRing.register.EventListener;
 import fi.dy.masa.malilib.event.InitializationHandler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.ResourceLocation;
+import net.xiaoyu233.fml.ModResourceManager;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class CursedRing implements ModInitializer {
-    public static final String MOD_ID = "CursedRing";
-    public static final int ButtonID = MOD_ID.hashCode();
+    public static final String MOD_NAME = "CursedRing";
+    public static final int ButtonID = MOD_NAME.hashCode();
     public static final ResourceLocation EnderChest = new ResourceLocation("textures/gui/ender_chest_button.png");
     public static final Map<Integer, Supplier<String>> InfoMap = new HashMap<>() {{
         this.put(6, () -> castDoubleToPercent(CursedRingConfig.ArmorWeakened.getDoubleValue()));
@@ -33,5 +34,6 @@ public class CursedRing implements ModInitializer {
     public void onInitialize() {
         EventListener.register();
         InitializationHandler.getInstance().registerInitializationHandler(new CursedRingInit());
+        ModResourceManager.addResourcePackDomain("cursedring");
     }
 }

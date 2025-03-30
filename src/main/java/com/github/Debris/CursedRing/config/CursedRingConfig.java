@@ -19,6 +19,7 @@ public class CursedRingConfig extends SimpleConfigs {
 
     // values
     public static final ConfigDouble DamageReceivedRate = new ConfigDouble("受伤害倍率", 2.0D, 1.0D, 1024.0D, false, null);
+    public static final ConfigDouble KnockBackReceiveRate = new ConfigDouble("受击退倍率", 2.0D, 0.0D, 1024.0D, true, null);
     public static final ConfigDouble ArmorWeakened = new ConfigDouble("盔甲效力削弱幅度", 0.3D, 0.0D, 1.0D, true, null);
     public static final ConfigDouble DamageToMobWeakened = new ConfigDouble("对怪物伤害降低幅度", 0.5D, 0.0D, 1.0D, true, null);
     public static final ConfigInteger ExtraLoot = new ConfigInteger("额外抢夺等级", 1, 0, 1024, false, null);
@@ -28,6 +29,8 @@ public class CursedRingConfig extends SimpleConfigs {
     public static final ConfigDouble ExtraEnchant = new ConfigDouble("附魔能力增加倍率", 0.33D, 0.0D, 1024.0D, false, null);
     public static final ConfigBoolean NeutralRage = new ConfigBoolean("中立生物的愤怒", true);
     public static final ConfigBoolean EternalFlame = new ConfigBoolean("永恒火焰", true);
+    public static final ConfigBoolean EternalInsomnia = new ConfigBoolean("永世不眠", true);
+    public static final ConfigBoolean EnderChest = new ConfigBoolean("便携末影箱", true);
 
     public static final ConfigInteger EnderChestIconOffsetX = new ConfigInteger("末影箱图标X轴偏移", 0);
     public static final ConfigInteger EnderChestIconOffsetY = new ConfigInteger("末影箱图标Y轴偏移", 0);
@@ -52,7 +55,7 @@ public class CursedRingConfig extends SimpleConfigs {
     }
 
     static {
-        number = List.of(DamageReceivedRate, ArmorWeakened, DamageToMobWeakened, ExtraLoot, ExtraButcher, ExtraFortune, ExtraEXP, ExtraEnchant, NeutralRage, EternalFlame);
+        number = List.of(DamageReceivedRate, KnockBackReceiveRate, ArmorWeakened, DamageToMobWeakened, ExtraLoot, ExtraButcher, ExtraFortune, ExtraEXP, ExtraEnchant, NeutralRage, EternalFlame, EternalInsomnia, EnderChest);
         appearance = List.of(EnderChestIconOffsetX, EnderChestIconOffsetY);
         hotkeys = List.of(OpenEnderChest);
         tabs.add(new ConfigTab("数值", number));
@@ -61,6 +64,6 @@ public class CursedRingConfig extends SimpleConfigs {
         values = new ArrayList<>();
         values.addAll(number);
         values.addAll(appearance);
-        Instance = new CursedRingConfig(CursedRing.MOD_ID, hotkeys, values);
+        Instance = new CursedRingConfig(CursedRing.MOD_NAME, hotkeys, values);
     }
 }

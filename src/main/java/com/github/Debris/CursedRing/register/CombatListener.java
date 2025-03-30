@@ -15,7 +15,10 @@ public class CombatListener implements ICombatListener {
 
     @Override
     public float onPlayerReceiveKnockBackModify(EntityPlayer player, Entity attacker, float original) {
-        return original * 2.0F;
+        if (PlayerUtil.isCursedRingWorn(player)) {
+            original *= (float) CursedRingConfig.KnockBackReceiveRate.getDoubleValue();
+        }
+        return original;
     }
 
     @Override

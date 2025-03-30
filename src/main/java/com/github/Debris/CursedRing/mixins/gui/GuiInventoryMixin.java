@@ -4,11 +4,9 @@ import com.github.Debris.CursedRing.CursedRing;
 import com.github.Debris.CursedRing.config.CursedRingConfig;
 import com.github.Debris.CursedRing.gui.GuiEnderChestButton;
 import com.github.Debris.CursedRing.network.C2SOpenEnderChest;
+import moddedmite.rustedironcore.api.util.FabricUtil;
 import moddedmite.rustedironcore.network.Network;
-import net.minecraft.Container;
-import net.minecraft.GuiButton;
-import net.minecraft.GuiInventory;
-import net.minecraft.InventoryEffectRenderer;
+import net.minecraft.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,7 +24,7 @@ public abstract class GuiInventoryMixin extends InventoryEffectRenderer {
         int ySize = 166;
         int guiLeft = (this.width - xSize) / 2;
         int guiTop = (this.height - ySize) / 2;
-        if (!this.mc.thePlayer.getActivePotionEffects().isEmpty() || this.mc.thePlayer.isMalnourished() || this.mc.thePlayer.isInsulinResistant() || this.mc.thePlayer.is_cursed) {
+        if ((!this.mc.thePlayer.getActivePotionEffects().isEmpty() || this.mc.thePlayer.isMalnourished() || this.mc.thePlayer.isInsulinResistant() || this.mc.thePlayer.is_cursed) && FabricUtil.isModLoaded("extragui")) {
             guiLeft = 160 + (this.width - xSize - 200) / 2;
         }
         int realX = guiLeft + xSize - 27 + CursedRingConfig.EnderChestIconOffsetX.getIntegerValue();
@@ -34,10 +32,10 @@ public abstract class GuiInventoryMixin extends InventoryEffectRenderer {
         this.buttonList.add(new GuiEnderChestButton(realX, realY));
     }
 
-    @Inject(method = "actionPerformed", at = @At("RETURN"))
-    private void addAction(GuiButton par1GuiButton, CallbackInfo ci) {
-        if (par1GuiButton.id == CursedRing.ButtonID) {
-            Network.sendToServer(new C2SOpenEnderChest());
-        }
-    }
+//    @Inject(method = "actionPerformed", at = @At("RETURN"))
+//    private void addAction(GuiButton par1GuiButton, CallbackInfo ci) {
+//        if (par1GuiButton.id == CursedRing.ButtonID) {
+//            Network.sendToServer(new C2SOpenEnderChest());
+//        }
+//    }
 }

@@ -1,7 +1,7 @@
 package com.github.Debris.CursedRing.api;
 
 public interface IEntityPlayer {
-    boolean cursedRing$IsCursedRingWorn();
+    boolean cr$IsCursedRingWorn();
 
-    void cursedRing$TryAddCursedRing();
+    void cr$TryAddCursedRing();
 }
