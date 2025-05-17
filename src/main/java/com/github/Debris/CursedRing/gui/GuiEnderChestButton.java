@@ -2,13 +2,10 @@ package com.github.Debris.CursedRing.gui;
 
 import com.github.Debris.CursedRing.CursedRing;
 import com.github.Debris.CursedRing.config.CursedRingConfig;
-import com.github.Debris.CursedRing.network.C2SOpenEnderChest;
 import com.github.Debris.CursedRing.util.PlayerUtil;
 import fi.dy.masa.malilib.gui.DrawContext;
 import fi.dy.masa.malilib.render.RenderUtils;
-import moddedmite.rustedironcore.network.Network;
 import net.minecraft.GuiButton;
-import net.minecraft.GuiContainer;
 import net.minecraft.Minecraft;
 import org.lwjgl.opengl.GL11;
 
@@ -21,7 +18,7 @@ public class GuiEnderChestButton extends GuiButton {
 
     @Override
     public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
-        this.drawButton = PlayerUtil.isCursedRingWorn(par1Minecraft.thePlayer) && CursedRingConfig.EnderChest.getBooleanValue();
+        this.drawButton = shouldDraw(par1Minecraft);
         if (this.drawButton && this.enabled) {
             RenderUtils.bindTexture(CursedRing.EnderChest);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -36,6 +33,15 @@ public class GuiEnderChestButton extends GuiButton {
                                 par2,
                                 par3, new DrawContext());
             }
+        }
+    }
+
+    private static boolean shouldDraw(Minecraft par1Minecraft) {
+        if (!CursedRingConfig.EnderChest.getBooleanValue()) return false;
+        if (par1Minecraft.isServerLocal()) {
+            return PlayerUtil.isCursedRingWorn(par1Minecraft.thePlayer);
+        } else {
+            return true;// TODO better when baubles api supports client
         }
     }
 }

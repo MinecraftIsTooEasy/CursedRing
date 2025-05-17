@@ -3,13 +3,11 @@ package com.github.Debris.CursedRing.register;
 import com.github.Debris.CursedRing.api.IEntityPlayer;
 import com.github.Debris.CursedRing.network.Packets;
 import com.github.Debris.CursedRing.util.PlayerUtil;
-import com.google.common.eventbus.Subscribe;
 import moddedmite.rustedironcore.api.event.Handlers;
 import moddedmite.rustedironcore.api.event.events.PlayerLoggedInEvent;
 import moddedmite.rustedironcore.api.event.listener.IPlayerEventListener;
 import net.minecraft.EntityPlayer;
 import net.minecraft.ServerPlayer;
-import net.xiaoyu233.fml.reload.event.ItemRegistryEvent;
 import net.xiaoyu233.fml.reload.event.MITEEvents;
 
 public class EventListener extends Handlers {

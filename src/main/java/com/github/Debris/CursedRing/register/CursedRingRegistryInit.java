@@ -5,7 +5,6 @@ import com.github.Debris.CursedRing.item.ItemCursedRing;
 import huix.glacier.api.entrypoint.IGameRegistry;
 import huix.glacier.api.registry.MinecraftRegistry;
 import net.minecraft.Item;
-import net.xiaoyu233.fml.reload.event.ItemRegistryEvent;
 import net.xiaoyu233.fml.reload.utils.IdUtil;
 
 public class CursedRingRegistryInit implements IGameRegistry {
