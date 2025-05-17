@@ -36,7 +36,7 @@ public class GuiEnderChestButton extends GuiButton {
         }
     }
 
-    private static boolean shouldDraw(Minecraft par1Minecraft) {
+    public static boolean shouldDraw(Minecraft par1Minecraft) {
         if (!CursedRingConfig.EnderChest.getBooleanValue()) return false;
         if (par1Minecraft.isServerLocal()) {
             return PlayerUtil.isCursedRingWorn(par1Minecraft.thePlayer);
