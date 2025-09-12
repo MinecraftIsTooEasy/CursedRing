@@ -27,11 +27,13 @@ public class CursedRingConfig extends SimpleConfigs {
     public static final ConfigInteger ExtraFortune = new ConfigInteger("额外时运等级", 1, 0, 1024, false, null);
     public static final ConfigInteger ExtraEXP = new ConfigInteger("经验增加倍率", 4, 0, 1024, false, null);
     public static final ConfigDouble ExtraEnchant = new ConfigDouble("附魔能力增加倍率", 0.33D, 0.0D, 1024.0D, false, null);
-    public static final ConfigBoolean NeutralRage = new ConfigBoolean("中立生物的愤怒", true);
+    public static final ConfigBoolean MandatoryWear = new ConfigBoolean("首次进入世界时强制佩戴", false);
+    public static final ConfigBoolean NeutralRage = new ConfigBoolean("无条件愤怒", true, "使条件敌对生物（中立生物）变为敌对生物");
     public static final ConfigBoolean EternalFlame = new ConfigBoolean("永恒火焰", true);
     public static final ConfigBoolean EternalInsomnia = new ConfigBoolean("永世不眠", true);
     public static final ConfigBoolean EnderChest = new ConfigBoolean("便携末影箱", true);
 
+    //Appearance
     public static final ConfigInteger EnderChestIconOffsetX = new ConfigInteger("末影箱图标X轴偏移", 0);
     public static final ConfigInteger EnderChestIconOffsetY = new ConfigInteger("末影箱图标Y轴偏移", 0);
 
@@ -55,7 +57,7 @@ public class CursedRingConfig extends SimpleConfigs {
     }
 
     static {
-        number = List.of(DamageReceivedRate, KnockBackReceiveRate, ArmorWeakened, DamageToMobWeakened, ExtraLoot, ExtraButcher, ExtraFortune, ExtraEXP, ExtraEnchant, NeutralRage, EternalFlame, EternalInsomnia, EnderChest);
+        number = List.of(DamageReceivedRate, KnockBackReceiveRate, ArmorWeakened, DamageToMobWeakened, ExtraLoot, ExtraButcher, ExtraFortune, ExtraEXP, ExtraEnchant, MandatoryWear, NeutralRage, EternalFlame, EternalInsomnia);
         appearance = List.of(EnderChestIconOffsetX, EnderChestIconOffsetY);
         hotkeys = List.of(OpenEnderChest);
         tabs.add(new ConfigTab("数值", number));

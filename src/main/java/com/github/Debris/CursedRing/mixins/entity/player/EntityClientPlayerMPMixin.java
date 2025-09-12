@@ -13,7 +13,7 @@ public abstract class EntityClientPlayerMPMixin extends ClientPlayer {
         super(par1Minecraft, par2World, par3Session, par4);
     }
 
-    @ModifyReturnValue(method = "isSleeping", at = @At("RETURN"))
+    @ModifyReturnValue(method = "isSleeping", at = @At("TAIL"))
     private boolean canNotSleep(boolean original) {
         if (PlayerUtil.isCursedRingWorn(this) && CursedRingConfig.EternalInsomnia.getBooleanValue()) return false;
         return original;

@@ -1,7 +1,10 @@
 package com.github.Debris.CursedRing.mixins.entity.player;
 
 import baubles.api.BaublesApi;
+import baubles.common.container.InventoryBaubles;
+import baubles.common.lib.PlayerHandler;
 import com.github.Debris.CursedRing.api.IEntityPlayer;
+import com.github.Debris.CursedRing.config.CursedRingConfig;
 import com.github.Debris.CursedRing.register.CursedRingRegistryInit;
 import net.minecraft.*;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,15 +31,18 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
     @Override
     public void cr$TryAddCursedRing() {
         if (this.onServer()) {
-//            IInventory baubles = BaublesApi.getBaubles((EntityPlayer) (Object) this);
-//            for (int i = 1; i <= 2; i++) {// only consider them
-//                if (baubles.getStackInSlot(i) == null) {
-//                    baubles.setInventorySlotContents(i, new ItemStack(Items.cursedRing));
-//                    break;
-//                }
-//            }
-//            PlayerHandler.setPlayerBaubles((EntityPlayer) (Object) this, (InventoryBaubles) baubles);
-            inventory.addItemStackToInventory(new ItemStack(CursedRingRegistryInit.cursedRing));
+            if (CursedRingConfig.MandatoryWear.getBooleanValue()) {
+                IInventory baubles = BaublesApi.getBaubles((EntityPlayer) (Object) this);
+                for (int i = 1; i <= 2; i++) {// only consider them
+                    if (baubles.getStackInSlot(i) == null) {
+                        baubles.setInventorySlotContents(i, new ItemStack(CursedRingRegistryInit.cursedRing));
+                        break;
+                    }
+                }
+                PlayerHandler.setPlayerBaubles((EntityPlayer) (Object) this, (InventoryBaubles) baubles);
+            } else {
+                inventory.addItemStackToInventory(new ItemStack(CursedRingRegistryInit.cursedRing));
+            }
         }
     }
 }

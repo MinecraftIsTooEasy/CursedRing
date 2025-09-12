@@ -1,6 +1,7 @@
 package com.github.Debris.CursedRing.mixins.entity.player;
 
 import com.github.Debris.CursedRing.api.IServerPlayer;
+import com.github.Debris.CursedRing.config.CursedRingConfig;
 import com.github.Debris.CursedRing.network.S2COpenWindow;
 import com.github.Debris.CursedRing.util.PlayerUtil;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -28,6 +29,7 @@ public abstract class ServerPlayerMixin extends EntityPlayer implements IServerP
 
     @Inject(method = "tryToSleepInBedAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/ServerPlayer;getIntoBed(IIII)V"))
     private void addMessage(int x, int y, int z, CallbackInfo ci) {
+        if (!(PlayerUtil.isCursedRingWorn(this) && CursedRingConfig.EternalInsomnia.getBooleanValue())) return;
         this.addChatMessage("cursedRing.sleep.message");
     }
 
@@ -45,7 +47,7 @@ public abstract class ServerPlayerMixin extends EntityPlayer implements IServerP
 
     @ModifyReturnValue(method = "isSleeping", at = @At("RETURN"))
     private boolean canNotSleep(boolean original) {
-        if (PlayerUtil.isCursedRingWorn(this)) return false;
+        if (PlayerUtil.isCursedRingWorn(this) && CursedRingConfig.EternalInsomnia.getBooleanValue()) return false;
         return original;
     }
 }

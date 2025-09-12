@@ -27,7 +27,7 @@ public abstract class GuiInventoryMixin extends InventoryEffectRenderer {
         int ySize = 166;
         int guiLeft = (this.width - xSize) / 2;
         int guiTop = (this.height - ySize) / 2;
-        if ((!this.mc.thePlayer.getActivePotionEffects().isEmpty() || this.mc.thePlayer.isMalnourished() || this.mc.thePlayer.isInsulinResistant() || this.mc.thePlayer.is_cursed) && FabricUtil.isModLoaded("extragui")) {
+        if ((!this.mc.thePlayer.getActivePotionEffects().isEmpty() || this.mc.thePlayer.isMalnourished() || this.mc.thePlayer.isInsulinResistant() || this.mc.thePlayer.is_cursed) && !FabricUtil.isModLoaded("emi")) {
             guiLeft = 160 + (this.width - xSize - 200) / 2;
         }
         int realX = guiLeft + xSize - 27 + CursedRingConfig.EnderChestIconOffsetX.getIntegerValue();

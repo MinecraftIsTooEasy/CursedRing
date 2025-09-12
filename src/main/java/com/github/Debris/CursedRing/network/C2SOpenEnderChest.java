@@ -1,12 +1,15 @@
 package com.github.Debris.CursedRing.network;
 
 import com.github.Debris.CursedRing.api.IServerPlayer;
+import com.github.Debris.CursedRing.config.CursedRingConfig;
+import com.github.Debris.CursedRing.gui.GuiEnderChestButton;
 import com.github.Debris.CursedRing.tileEntity.DummyEnderChest;
 import com.github.Debris.CursedRing.util.PlayerUtil;
 import moddedmite.rustedironcore.network.Packet;
 import moddedmite.rustedironcore.network.PacketByteBuf;
 import net.minecraft.EntityPlayer;
 import net.minecraft.InventoryEnderChest;
+import net.minecraft.Minecraft;
 import net.minecraft.ResourceLocation;
 
 public class C2SOpenEnderChest implements Packet {
@@ -16,6 +19,7 @@ public class C2SOpenEnderChest implements Packet {
 
     @Override
     public void apply(EntityPlayer entityPlayer) {
+        if (!CursedRingConfig.EnderChest.getBooleanValue()) return;
         if (PlayerUtil.isCursedRingWorn(entityPlayer)) {
             InventoryEnderChest inventory = entityPlayer.getInventoryEnderChest();
             if (inventory != null) {
