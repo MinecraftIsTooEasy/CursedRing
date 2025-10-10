@@ -9,7 +9,7 @@ public class CombatListener implements ICombatListener {
     @Override
     public void onPlayerReceiveDamageModify(EntityPlayer player, Damage damage) {
         if (PlayerUtil.isCursedRingWorn(player)) {
-            damage.scaleAmount(1.0F + (float) CursedRingConfig.DamageReceivedRate.getDoubleValue());
+            damage.scaleAmount((float) CursedRingConfig.DamageReceivedRate.getDoubleValue());
         }
     }
 
