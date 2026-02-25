@@ -16,7 +16,7 @@ public class PlayerUtil {
      */
     @Environment(EnvType.SERVER)
     public static boolean isCursedRingWorn(EntityPlayer player) {
-        return ((IEntityPlayer) (EntityPlayer) player).cr$IsCursedRingWorn();
+        return ((IEntityPlayer) player).cr$IsCursedRingWorn();
     }
 
 }

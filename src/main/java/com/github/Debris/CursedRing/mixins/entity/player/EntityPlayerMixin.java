@@ -1,5 +1,6 @@
 package com.github.Debris.CursedRing.mixins.entity.player;
 
+import baubles.api.BaubleSlotHelper;
 import baubles.api.BaublesApi;
 import baubles.common.container.InventoryBaubles;
 import baubles.common.lib.PlayerHandler;
@@ -20,29 +21,39 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IEnt
 
     @Override
     public boolean cr$IsCursedRingWorn() {
-        IInventory baubles = BaublesApi.getBaubles((EntityPlayer) (Object) this);
-        for (int i = 0; i < baubles.getSizeInventory(); i++) {
-            ItemStack stackInSlot = baubles.getStackInSlot(i);
-            if (stackInSlot != null && stackInSlot.getItem() == CursedRingRegistryInit.cursedRing) return true;
-        }
-        return false;
+        return BaubleSlotHelper.hasRingOfType((EntityPlayer) (Object) this, CursedRingRegistryInit.cursedRing);
     }
 
     @Override
-    public void cr$TryAddCursedRing() {
-        if (this.onServer()) {
-            if (CursedRingConfig.MandatoryWear.getBooleanValue()) {
-                IInventory baubles = BaublesApi.getBaubles((EntityPlayer) (Object) this);
-                for (int i = 1; i <= 2; i++) {// only consider them
-                    if (baubles.getStackInSlot(i) == null) {
-                        baubles.setInventorySlotContents(i, new ItemStack(CursedRingRegistryInit.cursedRing));
-                        break;
-                    }
-                }
-                PlayerHandler.setPlayerBaubles((EntityPlayer) (Object) this, (InventoryBaubles) baubles);
-            } else {
-                inventory.addItemStackToInventory(new ItemStack(CursedRingRegistryInit.cursedRing));
+    public void cr$TryAddCursedRing()
+    {
+        if (!this.onServer()) return;
+
+        if (CursedRingConfig.MandatoryWear.getBooleanValue())
+        {
+            IInventory baubles = BaublesApi.getBaubles((EntityPlayer) (Object) this);
+
+            if (baubles == null) return;
+
+            int ring1 = BaubleSlotHelper.RING_SLOT_1;
+            int ring2 = BaubleSlotHelper.RING_SLOT_2;
+
+            if (baubles.getStackInSlot(ring1) == null)
+            {
+                baubles.setInventorySlotContents(ring1, new ItemStack(CursedRingRegistryInit.cursedRing));
+
             }
+            else if (baubles.getStackInSlot(ring2) == null)
+            {
+                baubles.setInventorySlotContents(ring2, new ItemStack(CursedRingRegistryInit.cursedRing));
+            }
+
+            PlayerHandler.setPlayerBaubles((EntityPlayer) (Object) this, (InventoryBaubles) baubles);
+        }
+        else
+        {
+            inventory.addItemStackToInventory(new ItemStack(CursedRingRegistryInit.cursedRing));
         }
     }
+
 }
